@@ -11,7 +11,7 @@ import { ShopService } from './shop.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent implements OnInit {
-  @ViewChild('search', { static: true}) searchTerm: ElementRef | undefined;
+  @ViewChild('search', { static: true}) searchTerm: ElementRef| undefined |null;
   products: IProduct[] | undefined;
   productBrands: IBrand[] | undefined ;
   types: IProductType[] | undefined;
@@ -32,9 +32,9 @@ this.getTypes();
 
  // tslint:disable-next-line: typedef
  getProducts(){
-
-  this.shopservice.getProducts(this.shopParams).subscribe(response => {
-    this.products = response.data;
+ 
+  this.shopservice.getProducts(this.shopParams).subscribe((response:any| null | undefined) => {
+   this.products = response.data;
     this.shopParams.pageNumber = response.pageIndex;
     this.shopParams.pageSize = response.pageSize;
     this.totalcount = response.count;

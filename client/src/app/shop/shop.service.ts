@@ -5,6 +5,7 @@ import { IPagination } from '../shared/models/paginations';
 import { IProductType } from '../shared/models/productType';
 import {map} from 'rxjs/operators';
 import { ShopParams } from '../shared/models/shopParams';
+import { IProduct } from '../shared/models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,9 @@ export class ShopService {
       }
     ));
   }
-
+ getProduct(id:number){
+   return this.http.get<IProduct>(this.baseUrl+'products/'+id);
+ }
   // tslint:disable-next-line: typedef
   getBrands(){
 
